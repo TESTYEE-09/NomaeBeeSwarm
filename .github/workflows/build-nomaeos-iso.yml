@@ -10,10 +10,12 @@ on:
       - "disk_config/**"
       - "scripts/**"
       - ".github/workflows/build-nomaeos-iso.yml"
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
-  group: nomaeos-public-iso
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
 permissions:
