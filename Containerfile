@@ -23,6 +23,6 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    NOMAEOS_VERSION="${VERSION}" NOMAEOS_REVISION="${REVISION}" /ctx/build_files/build.sh
+    NOMAEOS_VERSION="${VERSION}" NOMAEOS_REVISION="${REVISION}" bash /ctx/build_files/build.sh
 
 RUN bootc container lint
