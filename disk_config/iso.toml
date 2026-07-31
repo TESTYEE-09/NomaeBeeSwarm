@@ -1,0 +1,37 @@
+[customizations.installer.kickstart]
+contents = """
+graphical
+lang en_AU.UTF-8
+keyboard --xlayouts='us'
+timezone Australia/Brisbane --utc
+network --bootproto=dhcp --device=link --activate --onboot=on
+firstboot --enable
+
+%post
+mkdir -p /etc/nomaeos
+cat > /etc/nomaeos/preview-build <<'EOF'
+NomaeOS 0.1.0 preview image. Test on the exact Nomae Box hardware before customer use.
+EOF
+%end
+"""
+
+[customizations.installer.modules]
+enable = [
+  "org.fedoraproject.Anaconda.Modules.Localization",
+  "org.fedoraproject.Anaconda.Modules.Storage",
+  "org.fedoraproject.Anaconda.Modules.Runtime",
+  "org.fedoraproject.Anaconda.Modules.Network",
+  "org.fedoraproject.Anaconda.Modules.Security",
+  "org.fedoraproject.Anaconda.Modules.Services",
+  "org.fedoraproject.Anaconda.Modules.Users",
+  "org.fedoraproject.Anaconda.Modules.Timezone"
+]
+
+disable = [
+  "org.fedoraproject.Anaconda.Modules.Subscription"
+]
+
+[customizations.iso]
+volume_id = "NOMAEOS-010"
+application_id = "NomaeOS Nomae Box Installer"
+publisher = "NomaePC"
