@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=NomaeOS Branding
+Comment=Apply NomaeOS defaults on the first KDE Desktop Mode session
+Exec=/usr/libexec/nomaeos/apply-branding
+OnlyShowIn=KDE;
+NoDisplay=true
+X-KDE-autostart-after=panel
+X-GNOME-Autostart-enabled=true
