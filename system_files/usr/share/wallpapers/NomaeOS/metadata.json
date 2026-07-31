@@ -1,0 +1,13 @@
+{
+  "KPlugin": {
+    "Authors": [
+      {
+        "Name": "NomaePC"
+      }
+    ],
+    "Id": "NomaeOS",
+    "Name": "NomaeOS Box",
+    "Description": "Default NomaeOS wallpaper for the Nomae Box",
+    "License": "CC-BY-4.0"
+  }
+}
