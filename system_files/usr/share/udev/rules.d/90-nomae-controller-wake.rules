@@ -1,0 +1,3 @@
+# Enable wake immediately when a clearly identified GameSir receiver is added.
+ACTION=="add|change", SUBSYSTEM=="usb", ATTR{manufacturer}=="GameSir*", TEST=="power/wakeup", ATTR{power/wakeup}="enabled"
+ACTION=="add|change", SUBSYSTEM=="usb", ATTR{product}=="*GameSir*", TEST=="power/wakeup", ATTR{power/wakeup}="enabled"
