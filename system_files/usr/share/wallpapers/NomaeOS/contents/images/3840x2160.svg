@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#090b10"/>
+      <stop offset="1" stop-color="#151923"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="46%" r="46%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="3840" height="2160" fill="url(#bg)"/>
+  <rect width="3840" height="2160" fill="url(#glow)"/>
+  <g transform="translate(1920 970)" fill="none" stroke="#f5f7fb" stroke-width="18" opacity="0.9">
+    <path d="M-420-300H300L420-185V300H-420Z"/>
+    <path d="M300-300V-185H420"/>
+    <circle cx="285" cy="210" r="18" fill="#f5f7fb" stroke="none"/>
+    <path d="M-350-220H210M-350-155H210M-350-90H210" opacity="0.35"/>
+  </g>
+  <text x="1920" y="1480" text-anchor="middle" fill="#f5f7fb" font-family="Inter, system-ui, sans-serif" font-size="170" font-weight="650" letter-spacing="12">NOMAEOS</text>
+  <text x="1920" y="1590" text-anchor="middle" fill="#f5f7fb" opacity="0.55" font-family="Inter, system-ui, sans-serif" font-size="44" letter-spacing="15">NOMAE BOX</text>
+</svg>
