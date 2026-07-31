@@ -1,0 +1,14 @@
+[Unit]
+Description=Enable USB controller wake for Nomae Box
+Documentation=https://github.com/TESTYEE-09/NomaeOS/blob/main/docs/TESTING.md
+After=systemd-udev-settle.service
+Before=graphical.target
+ConditionPathExists=/sys/bus/usb/devices
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/nomaeos/enable-controller-wake
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
