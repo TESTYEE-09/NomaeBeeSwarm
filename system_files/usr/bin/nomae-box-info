@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+release=/etc/nomaeos-release
+hardware=/usr/share/nomaeos/hardware/nomae-box-c6.json
+
+printf '\nNomae Box\n'
+printf '=========\n'
+if [[ -r "$release" ]]; then
+  # shellcheck disable=SC1090
+  source "$release"
+  printf 'OS:       %s %s\n' "$NOMAEOS_NAME" "$NOMAEOS_VERSION"
+  printf 'Device:   %s\n' "$NOMAEOS_DEVICE"
+  printf 'Chassis:  %s\n' "$NOMAEOS_CHASSIS"
+  printf 'Base:     %s\n' "$NOMAEOS_BASE"
+fi
+
+if command -v jq >/dev/null 2>&1 && [[ -r "$hardware" ]]; then
+  printf 'CPU:      %s\n' "$(jq -r '.target_hardware.cpu' "$hardware")"
+  printf 'GPU:      %s\n' "$(jq -r '.target_hardware.gpu' "$hardware")"
+  printf 'Board:    %s\n' "$(jq -r '.target_hardware.motherboard' "$hardware")"
+  printf 'Storage:  %s\n' "$(jq -r '.target_hardware.storage' "$hardware")"
+  printf 'Control:  %s\n' "$(jq -r '.target_hardware.controller' "$hardware")"
+fi
+
+printf '\nImage status\n------------\n'
+bootc status 2>/dev/null || rpm-ostree status 2>/dev/null || true
