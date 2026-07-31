@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CONFIG=/etc/nomaeos/controller-wake.conf
+ENABLE_GENERIC_USB_HID=1
+[[ -r "$CONFIG" ]] && source "$CONFIG"
+
+enabled=0
+skipped=0
+
+for wake_file in /sys/bus/usb/devices/*/power/wakeup; do
+  [[ -w "$wake_file" ]] || continue
+
+  device_dir=${wake_file%/power/wakeup}
+  manufacturer=$(cat "$device_dir/manufacturer" 2>/dev/null || true)
+  product=$(cat "$device_dir/product" 2>/dev/null || true)
+  label="${manufacturer} ${product}"
+  matched=0
+
+  if [[ "$label" =~ [Gg]ame[Ss]ir|[Cc]ontroller|[Gg]amepad|[Ww]ireless[[:space:]]+[Rr]eceiver ]]; then
+    matched=1
+  elif [[ "$ENABLE_GENERIC_USB_HID" == "1" ]]; then
+    for interface_class in "$device_dir":*/bInterfaceClass; do
+      [[ -r "$interface_class" ]] || continue
+      if [[ "$(cat "$interface_class")" == "03" ]]; then
+        matched=1
+        break
+      fi
+    done
+  fi
+
+  if [[ "$matched" == "1" ]]; then
+    if printf 'enabled' > "$wake_file" 2>/dev/null; then
+      printf 'NomaeOS: USB wake enabled for %s (%s)\n' "${label:-unnamed USB HID}" "$(basename "$device_dir")"
+      enabled=$((enabled + 1))
+    fi
+  else
+    skipped=$((skipped + 1))
+  fi
+done
+
+printf 'NomaeOS: controller wake scan complete, enabled=%d skipped=%d\n' "$enabled" "$skipped"
+exit 0
