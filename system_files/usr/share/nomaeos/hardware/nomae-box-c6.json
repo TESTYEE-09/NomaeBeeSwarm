@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "product": "Nomae Box",
+  "revision": "C6-RX7600-v1",
+  "manufacturer": "NomaePC",
+  "target_hardware": {
+    "case": "Jonsbo C6",
+    "cpu": "AMD Ryzen 5 5500",
+    "gpu": "AMD Radeon RX 7600 8GB",
+    "motherboard": "ASUS PRIME A520M-K",
+    "memory": "DDR4, final capacity recorded per machine",
+    "storage": "512GB NVMe",
+    "power_supply": "Gigabyte P650SS 650W",
+    "controller": "GameSir Nova Lite 2.4GHz"
+  },
+  "firmware_defaults": {
+    "uefi_boot": true,
+    "secure_boot": "test before customer release",
+    "erp": "disabled for controller wake testing",
+    "usb_power_in_sleep": "enabled",
+    "resizable_bar": "enabled when supported",
+    "above_4g_decoding": "enabled when supported"
+  },
+  "support_notes": [
+    "This image targets AMD graphics.",
+    "Controller wake means resume from suspend, not guaranteed cold power-on.",
+    "Run the complete hardware test checklist before sale."
+  ]
+}
